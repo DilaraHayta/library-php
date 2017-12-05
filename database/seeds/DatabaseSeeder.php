@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
 
         $this->command->info('User table seeded!');
 
+        $this->call('BookTableSeeder');
 
     }
 }
