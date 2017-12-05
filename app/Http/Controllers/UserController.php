@@ -10,7 +10,29 @@ class UserController extends Controller {
 
         $books=$user->book;
 
-        return View::make('home')->with('books',$books);
+        return View::make('home',compact('books'));
+    }
+
+    public function getLogin(){
+        return View::make('login');
+    }
+
+    public function postLogin(){
+        //validate user input
+
+        //attemp to login user
+
+    }
+
+    public function getRegister(){
+        return View::make('register');
+    }
+
+    public function postRegister(){
+        //validate user input
+
+        //attemp to register user
+
     }
 
 }
