@@ -20,3 +20,5 @@ Route::post('/login',array('as'=>'login-post','uses'=>'UserController@postLogin'
 Route::get('/register',array('as'=>'register','uses'=>'UserController@getRegister'));
 
 Route::post('/register',array('as'=>'register-post','uses'=>'UserController@postRegister'));
+
+Route::get('/logout',array('as'=>'logout','uses'=>'UserController@logout'));

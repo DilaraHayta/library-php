@@ -1,8 +1,14 @@
 @extends('layout.main')
 
 @section('books')
-    @foreach($books as $book)
-        <li>{{$book->title}} written by {{$book->writer}}</li>
-    @endforeach
+    <br>
+    <div class="container">
+            <ul class="list-group">
+                @foreach($books as $book)
+                    <li class="list-group-item">{{$book->title}} written by {{$book->writer}}</li>
+                @endforeach
+            </ul>
+    </div>
+
 
     @stop
