@@ -11,7 +11,12 @@
 |
 */
 
-Route::get('/', array('as'=>'home','uses'=>'UserController@home'));
+Route::group(['middleware'=>'auth'],function (){
+
+    Route::get('/', array('as'=>'home','uses'=>'UserController@home'));
+
+});
+
 
 Route::get('/login',array('as'=>'login','uses'=>'UserController@getLogin'));
 
