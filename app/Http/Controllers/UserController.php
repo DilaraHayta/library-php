@@ -50,7 +50,8 @@ class UserController extends Controller {
                 return Redirect::route('home');
             }
             else{
-                return Redirect::to('login');
+                return Redirect::to('login')->with('message','Invalid username/password combination!')
+                                            ->with('alert-class','alert-danger');
             }
 
         }
@@ -62,13 +63,23 @@ class UserController extends Controller {
     }
 
     public function postRegister(){
-
+        $validator = User::validate(Input::all());
+        if ($validator->passes()){
+            User::create(array(
+                'username' => Input::get('username'),
+                'email'=>Input::get('email'),
+                'password'=>Input::get('password')
+            ));
+            return Redirect::route('login')->withMessage('You have successfully registered!');
+        }
+        return Redirect::route('register')->withErrors($validator);
     }
 
 
     public function logout(){
         Auth::logout();
-        return Redirect::route('login');
+        return Redirect::route('login')
+            ->with('message','You have successfully logged out!');
     }
 
 }

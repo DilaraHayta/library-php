@@ -16,7 +16,9 @@
     <br><br>
     <div class="col-md-4 col-md-offset-4 container" align="center">
         @if(Session::has('message'))
-            <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
+            <p class="alert {{ Session::get('alert-class', 'alert-info') }}">
+                {{ Session::get('message') }}
+            </p>
         @endif
     </div>
     <div class="container-fluid">

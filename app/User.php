@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Hash;
+use \Validator;
 
 class User extends Authenticatable
 {
@@ -16,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'username', 'email', 'password',
     ];
 
     /**
@@ -34,5 +35,16 @@ class User extends Authenticatable
 
     public function book(){
         return $this->hasMany('App\Book');
+    }
+
+    public static function validate($input){
+        $rules = array(
+            'username'=>'required|min:3|max:50|alphanum|unique:users',
+            'email'=>'required|email|unique:users',
+            'password'=>'required|between:4,10|confirmed|alphanum',
+            'password_confirmation'=>'required|between:4,10'
+        );
+
+        return Validator::make($input,$rules);
     }
 }
